@@ -5,3 +5,8 @@
 [![Throughput Graph](https://graphs.waffle.io/chungu-voyage-bears-team-16/huddlehunt/throughput.svg)](https://waffle.io/chungu-voyage-bears-team-16/huddlehunt/metrics/throughput)
 
 Find shared workspaces with similarly minded individuals. Connecting people to workspaces in their locale.
+
+Bootstrapped with the awesome [RAN][ran] stack!
+
+<!-- links  -->
+[ran]: https://github.com/Sly777/ran
