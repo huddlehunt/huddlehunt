@@ -3,24 +3,27 @@ import withData from '../libraries/withData';
 import DefaultCon from '../containers/Default';
 import FacilityTile from '../components/FacilityTile';
 
-const seedName = "Facility 1";
-const seedAmenities = {
-	wifi: true,
-	power: true,
-	coffee: true,
-	beer: true,
-	meetingRoomsMaxSize: 1
+//Just some seed data so we can see the component
+const facProps = {
+	name: "Facility 1",
+	amenities: {
+			wifi: true,
+			power: true,
+			coffee: true,
+			beer: true,
+			meetingRoomsMaxSize: 1
+		},
+	description: "Lorem ipsum sit dolor amet yada yada",
+	location: {
+		lat: 10,
+		lon: 10
+	},
+	price: 10
 };
-const seedDescription = "Lorem ipsum sit dolor amet yada yada";
-const seedLocation = {
-	lat: 10,
-	lon: 10
-};
-const seedPrice = 10;
 
 export default withData(props =>
   <DefaultCon {...props}>
     <PostList />
-	<FacilityTile facName={seedName} facAmenities={seedAmenities} facDescription={seedDescription} facLocation={seedLocation} facPrice={seedPrice}/>
+	<FacilityTile {...facProps}/>
   </DefaultCon>
 );
