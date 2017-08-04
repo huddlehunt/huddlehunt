@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import { Link } from 'next-url-prettifier';
+import styled from 'styled-components';
 
 //price and location props are not used here (yet) ... included to remind me to incorporate in future
 const FacilityTile = (props) =>
-	<div>
+	<div className={props.className}>
 		<div>
 			<Link href="#">
 				<a>PHOTOS PLACEHOLDER</a>
@@ -43,13 +44,15 @@ FacilityTile.PropTypes = {
 	price: PropTypes.shape({
 		currency: PropTypes.string,
 		value: PropTypes.number
-	}).isRequired
+	}).isRequired,
+	className: PropTypes.string.isRequired,
 }
 
-export default FacilityTile;
+//export default FacilityTile;
 
-/*
+
 export default styled(FacilityTile)`
-//styles go here
+	background-color: #f2f2f2;
+	max-width:300px;
+	margin: auto;
 `;
-*/

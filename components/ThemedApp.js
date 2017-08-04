@@ -14,6 +14,8 @@ ThemedApp.propTypes = {
 export default styled(ThemedApp)`
   background-color: ${props => props.theme.colors.background};
   color: ${props => props.theme.colors.text};
+  display: flex;
+  flex-direction: column;
 
   a {
     color: ${props => props.theme.colors.main};
