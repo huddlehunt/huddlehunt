@@ -1,5 +1,5 @@
 # project: cj5o4cp4iwr8d0160vkfr1dk6
-# version: 2
+# version: 6
 
 type File implements Node {
   contentType: String!
@@ -28,4 +28,23 @@ type Facility implements Node {
   facilityType: String!
   amenities: String!
   location: String!
+}
+
+type Huddle implements Node {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  updatedAt: DateTime!
+  huddleType: String!
+  huddleExpiryDate: DateTime!
+}
+
+type FilePreviousValues implements Node {
+  contentType: String!
+  createdAt: DateTime!
+  id: ID! @isUnique
+  name: String!
+  secret: String!
+  size: Int!
+  updatedAt: DateTime!
+  url: String!
 }
