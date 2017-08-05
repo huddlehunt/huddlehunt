@@ -11,9 +11,6 @@ const LinkList = ({ className, pathname, authenticated, logout }) =>
     <Link prefetch route={Router.linkPage('create')}>
       <a className={pathname === '/create_post' && 'is-active'}>Create</a>
     </Link>
-    <Link prefetch route={Router.linkPage('dashboard')}>
-      <a className={pathname === '/dashboard' && 'is-active'}>Dashboard</a>
-    </Link>
     {!authenticated &&
       <Link prefetch route={Router.linkPage('signin')}>
         <a className={pathname === '/sign_in' && 'is-active'}>SignIn</a>
