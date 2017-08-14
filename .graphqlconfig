@@ -1,0 +1,8 @@
+{
+  "schemaPath": "./libraries/graphql_schemas/schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "default": "https://api.graph.cool/simple/v1/cj5o4cp4iwr8d0160vkfr1dk6"
+    }
+  }
+}

@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
-import { actions } from '../SignInForm/index.data';
+import { dispatchers } from '../AuthFields/store';
 
 const mapStateToProps = state => ({
   authenticated: state.auth.authenticated
 });
 
 const mapDispatchToProps = dispatch => ({
-  logout() {
-    dispatch(actions.signout());
+  actions: {
+    logout: () => dispatch(dispatchers.signOut())
   }
 });
 
