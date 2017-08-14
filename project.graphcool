@@ -1,5 +1,5 @@
 # project: cj5o4cp4iwr8d0160vkfr1dk6
-# version: 6
+# version: 7
 
 type File implements Node {
   contentType: String!
@@ -19,6 +19,8 @@ type User implements Node {
   name: String!
   bio: String!
   occupation: String!
+  email: String @isUnique
+  password: String
 }
 
 type Facility implements Node {
