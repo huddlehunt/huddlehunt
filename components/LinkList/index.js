@@ -27,6 +27,10 @@ const LinkList = ({ pathname, authenticated, logout }) =>
       >
         LogOut
       </S.LogOutButton>}
+    {authenticated &&
+      <Link prefetch route="user" passHref>
+        <S.A active={pathname === '/user'}>User Profile</S.A>
+      </Link>}
     <S.A
       href="https://github.com/Sly777/ran"
       rel="noopener noreferrer"
