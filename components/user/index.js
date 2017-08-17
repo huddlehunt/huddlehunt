@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import connect from './data';
 import { dump } from '../../libraries/helpers';
 
-const UserProfile = data =>
+const UserProfile = ({ data: { user } }) =>
   <div>
-    {dump(data)}
+    {dump(user)}
   </div>;
 
 UserProfile.propTypes = {

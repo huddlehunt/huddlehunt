@@ -1,5 +1,5 @@
 import { graphql } from 'react-apollo';
-import getUserGql from './getUser.gql';
+import getUserGql from './getCurrentUser.gql';
 
 const withData = graphql(getUserGql);
 
