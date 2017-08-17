@@ -5,6 +5,7 @@ import { dump } from '../../libraries/helpers';
 const UserProfile = ({ data: { user } }) =>
   <div>
     {dump(user)}
+    {user && <div>test</div>}
   </div>;
 
 UserProfile.propTypes = {
