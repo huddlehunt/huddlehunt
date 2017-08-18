@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import connect from './data';
+import UserSummary from './summary/index';
 import { dump } from '../../libraries/helpers';
 
 const UserProfile = ({ data: { user } }) =>
   <div>
-    {dump(user)}
-    {user && <div>test</div>}
+  <UserSummary user={user} />
   </div>;
 
 UserProfile.propTypes = {

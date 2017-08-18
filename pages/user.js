@@ -7,7 +7,7 @@ import { dump } from '../libraries/helpers';
 export default withData(props =>
   <App>
     <Helmet>
-      <title>user :: RAN! Example</title>
+      <title>User Profile</title>
     </Helmet>
     <div>
       <h1>user</h1>
@@ -17,6 +17,6 @@ export default withData(props =>
         {dump(props)}
       </pre>
     </div>
-    <UserProfile />
+    <UserProfile userid={props.url.id}/>
   </App>
 );
