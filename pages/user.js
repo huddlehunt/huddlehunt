@@ -15,8 +15,9 @@ export default withData(props =>
       <hr />
       <pre>
         {dump(props)}
+		idfromurl {props.url.query.id}
       </pre>
     </div>
-    <UserProfile userid={props.url.id}/>
+    <UserProfile userid={props.url.query.id}/>
   </App>
 );

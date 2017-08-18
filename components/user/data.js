@@ -1,8 +1,8 @@
 import { graphql, gql } from 'react-apollo';
 
 const getUserGql = gql`
-  query {
-    user {
+  query getUser($userid: ID!) {
+    User(id: $userid) {
       id
       firstName
       lastName
@@ -15,6 +15,12 @@ const getUserGql = gql`
   }
 `;
 
-const withData = graphql(getUserGql);
+const withData = graphql(getUserGql, {
+	options: ({ userid }) => ({
+		variables: {
+			userid
+		}
+	})
+});
 
 export default comp => withData(comp);

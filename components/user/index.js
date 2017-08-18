@@ -3,9 +3,9 @@ import connect from './data';
 import UserSummary from './summary/index';
 import { dump } from '../../libraries/helpers';
 
-const UserProfile = ({ data: { user } }) =>
+const UserProfile = ({data: { User }}) =>
   <div>
-  <UserSummary user={user} />
+  <UserSummary user={User} />
   </div>;
 
 UserProfile.propTypes = {
