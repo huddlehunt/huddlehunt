@@ -1,5 +1,5 @@
-# source: https://api.graph.cool/simple/v1/cixmkt2ul01q00122mksg82pn
-# timestamp: Wed Aug 09 2017 15:01:10 GMT+0300 (EEST)
+# source: https://api.graph.cool/simple/v1/cj5o4cp4iwr8d0160vkfr1dk6
+# timestamp: Mon Aug 21 2017 13:25:01 GMT+0100 (GMT Daylight Time)
 
 enum _ModelMutationType {
   CREATED
@@ -21,14 +21,27 @@ input AuthProviderSignupData {
   email: AUTH_PROVIDER_EMAIL
 }
 
-# The `BigDecimal` scalar type represents signed fractional values with arbitrary precision.
-scalar BigDecimal
-
-# The `BigInt` scalar type represents non-fractional signed whole numeric values. BigInt can represent arbitrary big values.
-scalar BigInt
+input CreateFacility {
+  amenities: String!
+  facilityType: String!
+  location: String!
+}
 
 input CreateFile {
   name: String!
+}
+
+input CreateFilePreviousValues {
+  contentType: String!
+  name: String!
+  secret: String!
+  size: Int!
+  url: String!
+}
+
+input CreateHuddle {
+  huddleExpiryDate: DateTime!
+  huddleType: String!
 }
 
 input CreatePost {
@@ -38,20 +51,512 @@ input CreatePost {
 }
 
 input CreateUser {
+  age: Int
+  exp: Int
   firstName: String!
   lastName: String!
+  location: String!
+  occupation: String!
+  username: String!
+}
+
+input CreateUserPreviousValues {
+  email: String
+  firstName: String!
+  lastName: String!
+  password: String
 }
 
 scalar DateTime
 
+type Facility implements Node {
+  amenities: String!
+  createdAt: DateTime!
+  facilityType: String!
+  id: ID!
+  location: String!
+  updatedAt: DateTime!
+}
+
+input FacilityFilter {
+  # Logical AND on all given filters.
+  AND: [FacilityFilter!]
+
+  # Logical OR on all given filters.
+  OR: [FacilityFilter!]
+  amenities: String
+
+  # All values that are not equal to given value.
+  amenities_not: String
+
+  # All values that are contained in given list.
+  amenities_in: [String!]
+
+  # All values that are not contained in given list.
+  amenities_not_in: [String!]
+
+  # All values less than the given value.
+  amenities_lt: String
+
+  # All values less than or equal the given value.
+  amenities_lte: String
+
+  # All values greater than the given value.
+  amenities_gt: String
+
+  # All values greater than or equal the given value.
+  amenities_gte: String
+
+  # All values containing the given string.
+  amenities_contains: String
+
+  # All values not containing the given string.
+  amenities_not_contains: String
+
+  # All values starting with the given string.
+  amenities_starts_with: String
+
+  # All values not starting with the given string.
+  amenities_not_starts_with: String
+
+  # All values ending with the given string.
+  amenities_ends_with: String
+
+  # All values not ending with the given string.
+  amenities_not_ends_with: String
+  createdAt: DateTime
+
+  # All values that are not equal to given value.
+  createdAt_not: DateTime
+
+  # All values that are contained in given list.
+  createdAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  createdAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  createdAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  createdAt_lte: DateTime
+
+  # All values greater than the given value.
+  createdAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  createdAt_gte: DateTime
+  facilityType: String
+
+  # All values that are not equal to given value.
+  facilityType_not: String
+
+  # All values that are contained in given list.
+  facilityType_in: [String!]
+
+  # All values that are not contained in given list.
+  facilityType_not_in: [String!]
+
+  # All values less than the given value.
+  facilityType_lt: String
+
+  # All values less than or equal the given value.
+  facilityType_lte: String
+
+  # All values greater than the given value.
+  facilityType_gt: String
+
+  # All values greater than or equal the given value.
+  facilityType_gte: String
+
+  # All values containing the given string.
+  facilityType_contains: String
+
+  # All values not containing the given string.
+  facilityType_not_contains: String
+
+  # All values starting with the given string.
+  facilityType_starts_with: String
+
+  # All values not starting with the given string.
+  facilityType_not_starts_with: String
+
+  # All values ending with the given string.
+  facilityType_ends_with: String
+
+  # All values not ending with the given string.
+  facilityType_not_ends_with: String
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  location: String
+
+  # All values that are not equal to given value.
+  location_not: String
+
+  # All values that are contained in given list.
+  location_in: [String!]
+
+  # All values that are not contained in given list.
+  location_not_in: [String!]
+
+  # All values less than the given value.
+  location_lt: String
+
+  # All values less than or equal the given value.
+  location_lte: String
+
+  # All values greater than the given value.
+  location_gt: String
+
+  # All values greater than or equal the given value.
+  location_gte: String
+
+  # All values containing the given string.
+  location_contains: String
+
+  # All values not containing the given string.
+  location_not_contains: String
+
+  # All values starting with the given string.
+  location_starts_with: String
+
+  # All values not starting with the given string.
+  location_not_starts_with: String
+
+  # All values ending with the given string.
+  location_ends_with: String
+
+  # All values not ending with the given string.
+  location_not_ends_with: String
+  updatedAt: DateTime
+
+  # All values that are not equal to given value.
+  updatedAt_not: DateTime
+
+  # All values that are contained in given list.
+  updatedAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  updatedAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  updatedAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  updatedAt_lte: DateTime
+
+  # All values greater than the given value.
+  updatedAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  updatedAt_gte: DateTime
+}
+
+enum FacilityOrderBy {
+  amenities_ASC
+  amenities_DESC
+  createdAt_ASC
+  createdAt_DESC
+  facilityType_ASC
+  facilityType_DESC
+  id_ASC
+  id_DESC
+  location_ASC
+  location_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type FacilityPreviousValues {
+  amenities: String!
+  createdAt: DateTime!
+  facilityType: String!
+  id: ID!
+  location: String!
+  updatedAt: DateTime!
+}
+
+input FacilitySubscriptionFilter {
+  # Logical AND on all given filters.
+  AND: [FacilitySubscriptionFilter!]
+
+  # Logical OR on all given filters.
+  OR: [FacilitySubscriptionFilter!]
+
+  # The subscription event gets dispatched when it's listed in mutation_in
+  mutation_in: [_ModelMutationType!]
+
+  # The subscription event gets only dispatched when one of the updated fields names is included in this list
+  updatedFields_contains: String
+
+  # The subscription event gets only dispatched when all of the field names included in this list have been updated
+  updatedFields_contains_every: [String!]
+
+  # The subscription event gets only dispatched when some of the field names included in this list have been updated
+  updatedFields_contains_some: [String!]
+  node: FacilitySubscriptionFilterNode
+}
+
+input FacilitySubscriptionFilterNode {
+  amenities: String
+
+  # All values that are not equal to given value.
+  amenities_not: String
+
+  # All values that are contained in given list.
+  amenities_in: [String!]
+
+  # All values that are not contained in given list.
+  amenities_not_in: [String!]
+
+  # All values less than the given value.
+  amenities_lt: String
+
+  # All values less than or equal the given value.
+  amenities_lte: String
+
+  # All values greater than the given value.
+  amenities_gt: String
+
+  # All values greater than or equal the given value.
+  amenities_gte: String
+
+  # All values containing the given string.
+  amenities_contains: String
+
+  # All values not containing the given string.
+  amenities_not_contains: String
+
+  # All values starting with the given string.
+  amenities_starts_with: String
+
+  # All values not starting with the given string.
+  amenities_not_starts_with: String
+
+  # All values ending with the given string.
+  amenities_ends_with: String
+
+  # All values not ending with the given string.
+  amenities_not_ends_with: String
+  createdAt: DateTime
+
+  # All values that are not equal to given value.
+  createdAt_not: DateTime
+
+  # All values that are contained in given list.
+  createdAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  createdAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  createdAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  createdAt_lte: DateTime
+
+  # All values greater than the given value.
+  createdAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  createdAt_gte: DateTime
+  facilityType: String
+
+  # All values that are not equal to given value.
+  facilityType_not: String
+
+  # All values that are contained in given list.
+  facilityType_in: [String!]
+
+  # All values that are not contained in given list.
+  facilityType_not_in: [String!]
+
+  # All values less than the given value.
+  facilityType_lt: String
+
+  # All values less than or equal the given value.
+  facilityType_lte: String
+
+  # All values greater than the given value.
+  facilityType_gt: String
+
+  # All values greater than or equal the given value.
+  facilityType_gte: String
+
+  # All values containing the given string.
+  facilityType_contains: String
+
+  # All values not containing the given string.
+  facilityType_not_contains: String
+
+  # All values starting with the given string.
+  facilityType_starts_with: String
+
+  # All values not starting with the given string.
+  facilityType_not_starts_with: String
+
+  # All values ending with the given string.
+  facilityType_ends_with: String
+
+  # All values not ending with the given string.
+  facilityType_not_ends_with: String
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  location: String
+
+  # All values that are not equal to given value.
+  location_not: String
+
+  # All values that are contained in given list.
+  location_in: [String!]
+
+  # All values that are not contained in given list.
+  location_not_in: [String!]
+
+  # All values less than the given value.
+  location_lt: String
+
+  # All values less than or equal the given value.
+  location_lte: String
+
+  # All values greater than the given value.
+  location_gt: String
+
+  # All values greater than or equal the given value.
+  location_gte: String
+
+  # All values containing the given string.
+  location_contains: String
+
+  # All values not containing the given string.
+  location_not_contains: String
+
+  # All values starting with the given string.
+  location_starts_with: String
+
+  # All values not starting with the given string.
+  location_not_starts_with: String
+
+  # All values ending with the given string.
+  location_ends_with: String
+
+  # All values not ending with the given string.
+  location_not_ends_with: String
+  updatedAt: DateTime
+
+  # All values that are not equal to given value.
+  updatedAt_not: DateTime
+
+  # All values that are contained in given list.
+  updatedAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  updatedAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  updatedAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  updatedAt_lte: DateTime
+
+  # All values greater than the given value.
+  updatedAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  updatedAt_gte: DateTime
+}
+
+type FacilitySubscriptionPayload {
+  mutation: _ModelMutationType!
+  node: Facility
+  updatedFields: [String!]
+  previousValues: FacilityPreviousValues
+}
+
 type File implements Node {
   contentType: String!
-  createdAt: DateTime
+  createdAt: DateTime!
   id: ID!
   name: String!
   secret: String!
   size: Int!
-  updatedAt: DateTime
+  updatedAt: DateTime!
   url: String!
 }
 
@@ -348,15 +853,616 @@ enum FileOrderBy {
   url_DESC
 }
 
-type FilePreviousValues {
+type FilePreviousValues implements Node {
   contentType: String!
-  createdAt: DateTime
+  createdAt: DateTime!
   id: ID!
   name: String!
   secret: String!
   size: Int!
-  updatedAt: DateTime
+  updatedAt: DateTime!
   url: String!
+}
+
+input FilePreviousValuesFilter {
+  # Logical AND on all given filters.
+  AND: [FilePreviousValuesFilter!]
+
+  # Logical OR on all given filters.
+  OR: [FilePreviousValuesFilter!]
+  contentType: String
+
+  # All values that are not equal to given value.
+  contentType_not: String
+
+  # All values that are contained in given list.
+  contentType_in: [String!]
+
+  # All values that are not contained in given list.
+  contentType_not_in: [String!]
+
+  # All values less than the given value.
+  contentType_lt: String
+
+  # All values less than or equal the given value.
+  contentType_lte: String
+
+  # All values greater than the given value.
+  contentType_gt: String
+
+  # All values greater than or equal the given value.
+  contentType_gte: String
+
+  # All values containing the given string.
+  contentType_contains: String
+
+  # All values not containing the given string.
+  contentType_not_contains: String
+
+  # All values starting with the given string.
+  contentType_starts_with: String
+
+  # All values not starting with the given string.
+  contentType_not_starts_with: String
+
+  # All values ending with the given string.
+  contentType_ends_with: String
+
+  # All values not ending with the given string.
+  contentType_not_ends_with: String
+  createdAt: DateTime
+
+  # All values that are not equal to given value.
+  createdAt_not: DateTime
+
+  # All values that are contained in given list.
+  createdAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  createdAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  createdAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  createdAt_lte: DateTime
+
+  # All values greater than the given value.
+  createdAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  createdAt_gte: DateTime
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  name: String
+
+  # All values that are not equal to given value.
+  name_not: String
+
+  # All values that are contained in given list.
+  name_in: [String!]
+
+  # All values that are not contained in given list.
+  name_not_in: [String!]
+
+  # All values less than the given value.
+  name_lt: String
+
+  # All values less than or equal the given value.
+  name_lte: String
+
+  # All values greater than the given value.
+  name_gt: String
+
+  # All values greater than or equal the given value.
+  name_gte: String
+
+  # All values containing the given string.
+  name_contains: String
+
+  # All values not containing the given string.
+  name_not_contains: String
+
+  # All values starting with the given string.
+  name_starts_with: String
+
+  # All values not starting with the given string.
+  name_not_starts_with: String
+
+  # All values ending with the given string.
+  name_ends_with: String
+
+  # All values not ending with the given string.
+  name_not_ends_with: String
+  secret: String
+
+  # All values that are not equal to given value.
+  secret_not: String
+
+  # All values that are contained in given list.
+  secret_in: [String!]
+
+  # All values that are not contained in given list.
+  secret_not_in: [String!]
+
+  # All values less than the given value.
+  secret_lt: String
+
+  # All values less than or equal the given value.
+  secret_lte: String
+
+  # All values greater than the given value.
+  secret_gt: String
+
+  # All values greater than or equal the given value.
+  secret_gte: String
+
+  # All values containing the given string.
+  secret_contains: String
+
+  # All values not containing the given string.
+  secret_not_contains: String
+
+  # All values starting with the given string.
+  secret_starts_with: String
+
+  # All values not starting with the given string.
+  secret_not_starts_with: String
+
+  # All values ending with the given string.
+  secret_ends_with: String
+
+  # All values not ending with the given string.
+  secret_not_ends_with: String
+  size: Int
+
+  # All values that are not equal to given value.
+  size_not: Int
+
+  # All values that are contained in given list.
+  size_in: [Int!]
+
+  # All values that are not contained in given list.
+  size_not_in: [Int!]
+
+  # All values less than the given value.
+  size_lt: Int
+
+  # All values less than or equal the given value.
+  size_lte: Int
+
+  # All values greater than the given value.
+  size_gt: Int
+
+  # All values greater than or equal the given value.
+  size_gte: Int
+  updatedAt: DateTime
+
+  # All values that are not equal to given value.
+  updatedAt_not: DateTime
+
+  # All values that are contained in given list.
+  updatedAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  updatedAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  updatedAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  updatedAt_lte: DateTime
+
+  # All values greater than the given value.
+  updatedAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  updatedAt_gte: DateTime
+  url: String
+
+  # All values that are not equal to given value.
+  url_not: String
+
+  # All values that are contained in given list.
+  url_in: [String!]
+
+  # All values that are not contained in given list.
+  url_not_in: [String!]
+
+  # All values less than the given value.
+  url_lt: String
+
+  # All values less than or equal the given value.
+  url_lte: String
+
+  # All values greater than the given value.
+  url_gt: String
+
+  # All values greater than or equal the given value.
+  url_gte: String
+
+  # All values containing the given string.
+  url_contains: String
+
+  # All values not containing the given string.
+  url_not_contains: String
+
+  # All values starting with the given string.
+  url_starts_with: String
+
+  # All values not starting with the given string.
+  url_not_starts_with: String
+
+  # All values ending with the given string.
+  url_ends_with: String
+
+  # All values not ending with the given string.
+  url_not_ends_with: String
+}
+
+enum FilePreviousValuesOrderBy {
+  contentType_ASC
+  contentType_DESC
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  secret_ASC
+  secret_DESC
+  size_ASC
+  size_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  url_ASC
+  url_DESC
+}
+
+type FilePreviousValuesPreviousValues {
+  contentType: String!
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  secret: String!
+  size: Int!
+  updatedAt: DateTime!
+  url: String!
+}
+
+input FilePreviousValuesSubscriptionFilter {
+  # Logical AND on all given filters.
+  AND: [FilePreviousValuesSubscriptionFilter!]
+
+  # Logical OR on all given filters.
+  OR: [FilePreviousValuesSubscriptionFilter!]
+
+  # The subscription event gets dispatched when it's listed in mutation_in
+  mutation_in: [_ModelMutationType!]
+
+  # The subscription event gets only dispatched when one of the updated fields names is included in this list
+  updatedFields_contains: String
+
+  # The subscription event gets only dispatched when all of the field names included in this list have been updated
+  updatedFields_contains_every: [String!]
+
+  # The subscription event gets only dispatched when some of the field names included in this list have been updated
+  updatedFields_contains_some: [String!]
+  node: FilePreviousValuesSubscriptionFilterNode
+}
+
+input FilePreviousValuesSubscriptionFilterNode {
+  contentType: String
+
+  # All values that are not equal to given value.
+  contentType_not: String
+
+  # All values that are contained in given list.
+  contentType_in: [String!]
+
+  # All values that are not contained in given list.
+  contentType_not_in: [String!]
+
+  # All values less than the given value.
+  contentType_lt: String
+
+  # All values less than or equal the given value.
+  contentType_lte: String
+
+  # All values greater than the given value.
+  contentType_gt: String
+
+  # All values greater than or equal the given value.
+  contentType_gte: String
+
+  # All values containing the given string.
+  contentType_contains: String
+
+  # All values not containing the given string.
+  contentType_not_contains: String
+
+  # All values starting with the given string.
+  contentType_starts_with: String
+
+  # All values not starting with the given string.
+  contentType_not_starts_with: String
+
+  # All values ending with the given string.
+  contentType_ends_with: String
+
+  # All values not ending with the given string.
+  contentType_not_ends_with: String
+  createdAt: DateTime
+
+  # All values that are not equal to given value.
+  createdAt_not: DateTime
+
+  # All values that are contained in given list.
+  createdAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  createdAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  createdAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  createdAt_lte: DateTime
+
+  # All values greater than the given value.
+  createdAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  createdAt_gte: DateTime
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  name: String
+
+  # All values that are not equal to given value.
+  name_not: String
+
+  # All values that are contained in given list.
+  name_in: [String!]
+
+  # All values that are not contained in given list.
+  name_not_in: [String!]
+
+  # All values less than the given value.
+  name_lt: String
+
+  # All values less than or equal the given value.
+  name_lte: String
+
+  # All values greater than the given value.
+  name_gt: String
+
+  # All values greater than or equal the given value.
+  name_gte: String
+
+  # All values containing the given string.
+  name_contains: String
+
+  # All values not containing the given string.
+  name_not_contains: String
+
+  # All values starting with the given string.
+  name_starts_with: String
+
+  # All values not starting with the given string.
+  name_not_starts_with: String
+
+  # All values ending with the given string.
+  name_ends_with: String
+
+  # All values not ending with the given string.
+  name_not_ends_with: String
+  secret: String
+
+  # All values that are not equal to given value.
+  secret_not: String
+
+  # All values that are contained in given list.
+  secret_in: [String!]
+
+  # All values that are not contained in given list.
+  secret_not_in: [String!]
+
+  # All values less than the given value.
+  secret_lt: String
+
+  # All values less than or equal the given value.
+  secret_lte: String
+
+  # All values greater than the given value.
+  secret_gt: String
+
+  # All values greater than or equal the given value.
+  secret_gte: String
+
+  # All values containing the given string.
+  secret_contains: String
+
+  # All values not containing the given string.
+  secret_not_contains: String
+
+  # All values starting with the given string.
+  secret_starts_with: String
+
+  # All values not starting with the given string.
+  secret_not_starts_with: String
+
+  # All values ending with the given string.
+  secret_ends_with: String
+
+  # All values not ending with the given string.
+  secret_not_ends_with: String
+  size: Int
+
+  # All values that are not equal to given value.
+  size_not: Int
+
+  # All values that are contained in given list.
+  size_in: [Int!]
+
+  # All values that are not contained in given list.
+  size_not_in: [Int!]
+
+  # All values less than the given value.
+  size_lt: Int
+
+  # All values less than or equal the given value.
+  size_lte: Int
+
+  # All values greater than the given value.
+  size_gt: Int
+
+  # All values greater than or equal the given value.
+  size_gte: Int
+  updatedAt: DateTime
+
+  # All values that are not equal to given value.
+  updatedAt_not: DateTime
+
+  # All values that are contained in given list.
+  updatedAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  updatedAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  updatedAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  updatedAt_lte: DateTime
+
+  # All values greater than the given value.
+  updatedAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  updatedAt_gte: DateTime
+  url: String
+
+  # All values that are not equal to given value.
+  url_not: String
+
+  # All values that are contained in given list.
+  url_in: [String!]
+
+  # All values that are not contained in given list.
+  url_not_in: [String!]
+
+  # All values less than the given value.
+  url_lt: String
+
+  # All values less than or equal the given value.
+  url_lte: String
+
+  # All values greater than the given value.
+  url_gt: String
+
+  # All values greater than or equal the given value.
+  url_gte: String
+
+  # All values containing the given string.
+  url_contains: String
+
+  # All values not containing the given string.
+  url_not_contains: String
+
+  # All values starting with the given string.
+  url_starts_with: String
+
+  # All values not starting with the given string.
+  url_not_starts_with: String
+
+  # All values ending with the given string.
+  url_ends_with: String
+
+  # All values not ending with the given string.
+  url_not_ends_with: String
+}
+
+type FilePreviousValuesSubscriptionPayload {
+  mutation: _ModelMutationType!
+  node: FilePreviousValues
+  updatedFields: [String!]
+  previousValues: FilePreviousValuesPreviousValues
 }
 
 input FileSubscriptionFilter {
@@ -656,24 +1762,396 @@ type FileSubscriptionPayload {
   previousValues: FilePreviousValues
 }
 
-# The `Long` scalar type represents non-fractional signed whole numeric values.
-# Long can represent values between -(2^63) and 2^63 - 1.
-scalar Long
+type Huddle implements Node {
+  createdAt: DateTime!
+  huddleExpiryDate: DateTime!
+  huddleType: String!
+  id: ID!
+  updatedAt: DateTime!
+}
+
+input HuddleFilter {
+  # Logical AND on all given filters.
+  AND: [HuddleFilter!]
+
+  # Logical OR on all given filters.
+  OR: [HuddleFilter!]
+  createdAt: DateTime
+
+  # All values that are not equal to given value.
+  createdAt_not: DateTime
+
+  # All values that are contained in given list.
+  createdAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  createdAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  createdAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  createdAt_lte: DateTime
+
+  # All values greater than the given value.
+  createdAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  createdAt_gte: DateTime
+  huddleExpiryDate: DateTime
+
+  # All values that are not equal to given value.
+  huddleExpiryDate_not: DateTime
+
+  # All values that are contained in given list.
+  huddleExpiryDate_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  huddleExpiryDate_not_in: [DateTime!]
+
+  # All values less than the given value.
+  huddleExpiryDate_lt: DateTime
+
+  # All values less than or equal the given value.
+  huddleExpiryDate_lte: DateTime
+
+  # All values greater than the given value.
+  huddleExpiryDate_gt: DateTime
+
+  # All values greater than or equal the given value.
+  huddleExpiryDate_gte: DateTime
+  huddleType: String
+
+  # All values that are not equal to given value.
+  huddleType_not: String
+
+  # All values that are contained in given list.
+  huddleType_in: [String!]
+
+  # All values that are not contained in given list.
+  huddleType_not_in: [String!]
+
+  # All values less than the given value.
+  huddleType_lt: String
+
+  # All values less than or equal the given value.
+  huddleType_lte: String
+
+  # All values greater than the given value.
+  huddleType_gt: String
+
+  # All values greater than or equal the given value.
+  huddleType_gte: String
+
+  # All values containing the given string.
+  huddleType_contains: String
+
+  # All values not containing the given string.
+  huddleType_not_contains: String
+
+  # All values starting with the given string.
+  huddleType_starts_with: String
+
+  # All values not starting with the given string.
+  huddleType_not_starts_with: String
+
+  # All values ending with the given string.
+  huddleType_ends_with: String
+
+  # All values not ending with the given string.
+  huddleType_not_ends_with: String
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  updatedAt: DateTime
+
+  # All values that are not equal to given value.
+  updatedAt_not: DateTime
+
+  # All values that are contained in given list.
+  updatedAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  updatedAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  updatedAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  updatedAt_lte: DateTime
+
+  # All values greater than the given value.
+  updatedAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  updatedAt_gte: DateTime
+}
+
+enum HuddleOrderBy {
+  createdAt_ASC
+  createdAt_DESC
+  huddleExpiryDate_ASC
+  huddleExpiryDate_DESC
+  huddleType_ASC
+  huddleType_DESC
+  id_ASC
+  id_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type HuddlePreviousValues {
+  createdAt: DateTime!
+  huddleExpiryDate: DateTime!
+  huddleType: String!
+  id: ID!
+  updatedAt: DateTime!
+}
+
+input HuddleSubscriptionFilter {
+  # Logical AND on all given filters.
+  AND: [HuddleSubscriptionFilter!]
+
+  # Logical OR on all given filters.
+  OR: [HuddleSubscriptionFilter!]
+
+  # The subscription event gets dispatched when it's listed in mutation_in
+  mutation_in: [_ModelMutationType!]
+
+  # The subscription event gets only dispatched when one of the updated fields names is included in this list
+  updatedFields_contains: String
+
+  # The subscription event gets only dispatched when all of the field names included in this list have been updated
+  updatedFields_contains_every: [String!]
+
+  # The subscription event gets only dispatched when some of the field names included in this list have been updated
+  updatedFields_contains_some: [String!]
+  node: HuddleSubscriptionFilterNode
+}
+
+input HuddleSubscriptionFilterNode {
+  createdAt: DateTime
+
+  # All values that are not equal to given value.
+  createdAt_not: DateTime
+
+  # All values that are contained in given list.
+  createdAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  createdAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  createdAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  createdAt_lte: DateTime
+
+  # All values greater than the given value.
+  createdAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  createdAt_gte: DateTime
+  huddleExpiryDate: DateTime
+
+  # All values that are not equal to given value.
+  huddleExpiryDate_not: DateTime
+
+  # All values that are contained in given list.
+  huddleExpiryDate_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  huddleExpiryDate_not_in: [DateTime!]
+
+  # All values less than the given value.
+  huddleExpiryDate_lt: DateTime
+
+  # All values less than or equal the given value.
+  huddleExpiryDate_lte: DateTime
+
+  # All values greater than the given value.
+  huddleExpiryDate_gt: DateTime
+
+  # All values greater than or equal the given value.
+  huddleExpiryDate_gte: DateTime
+  huddleType: String
+
+  # All values that are not equal to given value.
+  huddleType_not: String
+
+  # All values that are contained in given list.
+  huddleType_in: [String!]
+
+  # All values that are not contained in given list.
+  huddleType_not_in: [String!]
+
+  # All values less than the given value.
+  huddleType_lt: String
+
+  # All values less than or equal the given value.
+  huddleType_lte: String
+
+  # All values greater than the given value.
+  huddleType_gt: String
+
+  # All values greater than or equal the given value.
+  huddleType_gte: String
+
+  # All values containing the given string.
+  huddleType_contains: String
+
+  # All values not containing the given string.
+  huddleType_not_contains: String
+
+  # All values starting with the given string.
+  huddleType_starts_with: String
+
+  # All values not starting with the given string.
+  huddleType_not_starts_with: String
+
+  # All values ending with the given string.
+  huddleType_ends_with: String
+
+  # All values not ending with the given string.
+  huddleType_not_ends_with: String
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  updatedAt: DateTime
+
+  # All values that are not equal to given value.
+  updatedAt_not: DateTime
+
+  # All values that are contained in given list.
+  updatedAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  updatedAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  updatedAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  updatedAt_lte: DateTime
+
+  # All values greater than the given value.
+  updatedAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  updatedAt_gte: DateTime
+}
+
+type HuddleSubscriptionPayload {
+  mutation: _ModelMutationType!
+  node: Huddle
+  updatedFields: [String!]
+  previousValues: HuddlePreviousValues
+}
 
 type Mutation {
+  createFacility(amenities: String!, facilityType: String!, location: String!): Facility
   createFile(name: String!): File
+  createFilePreviousValues(contentType: String!, name: String!, secret: String!, size: Int!, url: String!): FilePreviousValues
+  createHuddle(huddleExpiryDate: DateTime!, huddleType: String!): Huddle
   createPost(title: String!, url: String!, votes: Int): Post
+  createUserPreviousValues(email: String, firstName: String!, lastName: String!, password: String): UserPreviousValues
+  updateFacility(amenities: String, facilityType: String, id: ID!, location: String): Facility
   updateFile(id: ID!, name: String): File
+  updateFilePreviousValues(contentType: String, id: ID!, name: String, secret: String, size: Int, url: String): FilePreviousValues
+  updateHuddle(huddleExpiryDate: DateTime, huddleType: String, id: ID!): Huddle
   updatePost(id: ID!, title: String, url: String, votes: Int): Post
-  updateUser(firstName: String, id: ID!, lastName: String): User
+  updateUser(age: Int, exp: Int, firstName: String, id: ID!, lastName: String, location: String, occupation: String, username: String): User
+  updateUserPreviousValues(email: String, firstName: String, id: ID!, lastName: String, password: String): UserPreviousValues
+  updateOrCreateFacility(update: UpdateFacility!, create: CreateFacility!): Facility
   updateOrCreateFile(update: UpdateFile!, create: CreateFile!): File
+  updateOrCreateFilePreviousValues(update: UpdateFilePreviousValues!, create: CreateFilePreviousValues!): FilePreviousValues
+  updateOrCreateHuddle(update: UpdateHuddle!, create: CreateHuddle!): Huddle
   updateOrCreatePost(update: UpdatePost!, create: CreatePost!): Post
   updateOrCreateUser(update: UpdateUser!, create: CreateUser!): User
+  updateOrCreateUserPreviousValues(update: UpdateUserPreviousValues!, create: CreateUserPreviousValues!): UserPreviousValues
+  deleteFacility(id: ID!): Facility
   deleteFile(id: ID!): File
+  deleteFilePreviousValues(id: ID!): FilePreviousValues
+  deleteHuddle(id: ID!): Huddle
   deletePost(id: ID!): Post
   deleteUser(id: ID!): User
+  deleteUserPreviousValues(id: ID!): UserPreviousValues
   signinUser(email: AUTH_PROVIDER_EMAIL): SigninPayload!
-  createUser(firstName: String!, lastName: String!, authProvider: AuthProviderSignupData!): User
+  createUser(age: Int, exp: Int, firstName: String!, lastName: String!, location: String!, occupation: String!, username: String!, authProvider: AuthProviderSignupData!): User
 }
 
 # An object with an ID
@@ -683,10 +2161,10 @@ interface Node {
 }
 
 type Post implements Node {
-  createdAt: DateTime
+  createdAt: DateTime!
   id: ID!
   title: String!
-  updatedAt: DateTime
+  updatedAt: DateTime!
   url: String!
   votes: Int
 }
@@ -901,10 +2379,10 @@ enum PostOrderBy {
 }
 
 type PostPreviousValues {
-  createdAt: DateTime
+  createdAt: DateTime!
   id: ID!
   title: String!
-  updatedAt: DateTime
+  updatedAt: DateTime!
   url: String!
   votes: Int
 }
@@ -1127,15 +2605,27 @@ type PostSubscriptionPayload {
 }
 
 type Query {
+  allFacilities(filter: FacilityFilter, orderBy: FacilityOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Facility!]!
   allFiles(filter: FileFilter, orderBy: FileOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [File!]!
+  allFilePreviousValueses(filter: FilePreviousValuesFilter, orderBy: FilePreviousValuesOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [FilePreviousValues!]!
+  allHuddles(filter: HuddleFilter, orderBy: HuddleOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Huddle!]!
   allPosts(filter: PostFilter, orderBy: PostOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]!
   allUsers(filter: UserFilter, orderBy: UserOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [User!]!
+  allUserPreviousValueses(filter: UserPreviousValuesFilter, orderBy: UserPreviousValuesOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): [UserPreviousValues!]!
+  _allFacilitiesMeta(filter: FacilityFilter, orderBy: FacilityOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
   _allFilesMeta(filter: FileFilter, orderBy: FileOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+  _allFilePreviousValuesesMeta(filter: FilePreviousValuesFilter, orderBy: FilePreviousValuesOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+  _allHuddlesMeta(filter: HuddleFilter, orderBy: HuddleOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
   _allPostsMeta(filter: PostFilter, orderBy: PostOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
   _allUsersMeta(filter: UserFilter, orderBy: UserOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+  _allUserPreviousValuesesMeta(filter: UserPreviousValuesFilter, orderBy: UserPreviousValuesOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): _QueryMeta!
+  Facility(id: ID): Facility
   File(id: ID, secret: String, url: String): File
+  FilePreviousValues(id: ID): FilePreviousValues
+  Huddle(id: ID): Huddle
   Post(id: ID): Post
-  User(email: String, id: ID): User
+  User(email: String, id: ID, username: String): User
+  UserPreviousValues(id: ID): UserPreviousValues
   user: User
 
   # Fetches an object given its ID
@@ -1152,14 +2642,40 @@ type SigninPayload {
 }
 
 type Subscription {
+  Facility(filter: FacilitySubscriptionFilter): FacilitySubscriptionPayload
   File(filter: FileSubscriptionFilter): FileSubscriptionPayload
+  FilePreviousValues(filter: FilePreviousValuesSubscriptionFilter): FilePreviousValuesSubscriptionPayload
+  Huddle(filter: HuddleSubscriptionFilter): HuddleSubscriptionPayload
   Post(filter: PostSubscriptionFilter): PostSubscriptionPayload
   User(filter: UserSubscriptionFilter): UserSubscriptionPayload
+  UserPreviousValues(filter: UserPreviousValuesSubscriptionFilter): UserPreviousValuesSubscriptionPayload
+}
+
+input UpdateFacility {
+  amenities: String
+  facilityType: String
+  id: ID!
+  location: String
 }
 
 input UpdateFile {
   id: ID!
   name: String
+}
+
+input UpdateFilePreviousValues {
+  contentType: String
+  id: ID!
+  name: String
+  secret: String
+  size: Int
+  url: String
+}
+
+input UpdateHuddle {
+  huddleExpiryDate: DateTime
+  huddleType: String
+  id: ID!
 }
 
 input UpdatePost {
@@ -1170,19 +2686,37 @@ input UpdatePost {
 }
 
 input UpdateUser {
+  age: Int
+  exp: Int
   firstName: String
   id: ID!
   lastName: String
+  location: String
+  occupation: String
+  username: String
+}
+
+input UpdateUserPreviousValues {
+  email: String
+  firstName: String
+  id: ID!
+  lastName: String
+  password: String
 }
 
 type User implements Node {
-  createdAt: DateTime
+  age: Int
+  createdAt: DateTime!
   email: String
+  exp: Int
   firstName: String!
   id: ID!
   lastName: String!
+  location: String!
+  occupation: String!
   password: String
-  updatedAt: DateTime
+  updatedAt: DateTime!
+  username: String!
 }
 
 input UserFilter {
@@ -1191,6 +2725,459 @@ input UserFilter {
 
   # Logical OR on all given filters.
   OR: [UserFilter!]
+  age: Int
+
+  # All values that are not equal to given value.
+  age_not: Int
+
+  # All values that are contained in given list.
+  age_in: [Int!]
+
+  # All values that are not contained in given list.
+  age_not_in: [Int!]
+
+  # All values less than the given value.
+  age_lt: Int
+
+  # All values less than or equal the given value.
+  age_lte: Int
+
+  # All values greater than the given value.
+  age_gt: Int
+
+  # All values greater than or equal the given value.
+  age_gte: Int
+  createdAt: DateTime
+
+  # All values that are not equal to given value.
+  createdAt_not: DateTime
+
+  # All values that are contained in given list.
+  createdAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  createdAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  createdAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  createdAt_lte: DateTime
+
+  # All values greater than the given value.
+  createdAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  createdAt_gte: DateTime
+  email: String
+
+  # All values that are not equal to given value.
+  email_not: String
+
+  # All values that are contained in given list.
+  email_in: [String!]
+
+  # All values that are not contained in given list.
+  email_not_in: [String!]
+
+  # All values less than the given value.
+  email_lt: String
+
+  # All values less than or equal the given value.
+  email_lte: String
+
+  # All values greater than the given value.
+  email_gt: String
+
+  # All values greater than or equal the given value.
+  email_gte: String
+
+  # All values containing the given string.
+  email_contains: String
+
+  # All values not containing the given string.
+  email_not_contains: String
+
+  # All values starting with the given string.
+  email_starts_with: String
+
+  # All values not starting with the given string.
+  email_not_starts_with: String
+
+  # All values ending with the given string.
+  email_ends_with: String
+
+  # All values not ending with the given string.
+  email_not_ends_with: String
+  exp: Int
+
+  # All values that are not equal to given value.
+  exp_not: Int
+
+  # All values that are contained in given list.
+  exp_in: [Int!]
+
+  # All values that are not contained in given list.
+  exp_not_in: [Int!]
+
+  # All values less than the given value.
+  exp_lt: Int
+
+  # All values less than or equal the given value.
+  exp_lte: Int
+
+  # All values greater than the given value.
+  exp_gt: Int
+
+  # All values greater than or equal the given value.
+  exp_gte: Int
+  firstName: String
+
+  # All values that are not equal to given value.
+  firstName_not: String
+
+  # All values that are contained in given list.
+  firstName_in: [String!]
+
+  # All values that are not contained in given list.
+  firstName_not_in: [String!]
+
+  # All values less than the given value.
+  firstName_lt: String
+
+  # All values less than or equal the given value.
+  firstName_lte: String
+
+  # All values greater than the given value.
+  firstName_gt: String
+
+  # All values greater than or equal the given value.
+  firstName_gte: String
+
+  # All values containing the given string.
+  firstName_contains: String
+
+  # All values not containing the given string.
+  firstName_not_contains: String
+
+  # All values starting with the given string.
+  firstName_starts_with: String
+
+  # All values not starting with the given string.
+  firstName_not_starts_with: String
+
+  # All values ending with the given string.
+  firstName_ends_with: String
+
+  # All values not ending with the given string.
+  firstName_not_ends_with: String
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  lastName: String
+
+  # All values that are not equal to given value.
+  lastName_not: String
+
+  # All values that are contained in given list.
+  lastName_in: [String!]
+
+  # All values that are not contained in given list.
+  lastName_not_in: [String!]
+
+  # All values less than the given value.
+  lastName_lt: String
+
+  # All values less than or equal the given value.
+  lastName_lte: String
+
+  # All values greater than the given value.
+  lastName_gt: String
+
+  # All values greater than or equal the given value.
+  lastName_gte: String
+
+  # All values containing the given string.
+  lastName_contains: String
+
+  # All values not containing the given string.
+  lastName_not_contains: String
+
+  # All values starting with the given string.
+  lastName_starts_with: String
+
+  # All values not starting with the given string.
+  lastName_not_starts_with: String
+
+  # All values ending with the given string.
+  lastName_ends_with: String
+
+  # All values not ending with the given string.
+  lastName_not_ends_with: String
+  location: String
+
+  # All values that are not equal to given value.
+  location_not: String
+
+  # All values that are contained in given list.
+  location_in: [String!]
+
+  # All values that are not contained in given list.
+  location_not_in: [String!]
+
+  # All values less than the given value.
+  location_lt: String
+
+  # All values less than or equal the given value.
+  location_lte: String
+
+  # All values greater than the given value.
+  location_gt: String
+
+  # All values greater than or equal the given value.
+  location_gte: String
+
+  # All values containing the given string.
+  location_contains: String
+
+  # All values not containing the given string.
+  location_not_contains: String
+
+  # All values starting with the given string.
+  location_starts_with: String
+
+  # All values not starting with the given string.
+  location_not_starts_with: String
+
+  # All values ending with the given string.
+  location_ends_with: String
+
+  # All values not ending with the given string.
+  location_not_ends_with: String
+  occupation: String
+
+  # All values that are not equal to given value.
+  occupation_not: String
+
+  # All values that are contained in given list.
+  occupation_in: [String!]
+
+  # All values that are not contained in given list.
+  occupation_not_in: [String!]
+
+  # All values less than the given value.
+  occupation_lt: String
+
+  # All values less than or equal the given value.
+  occupation_lte: String
+
+  # All values greater than the given value.
+  occupation_gt: String
+
+  # All values greater than or equal the given value.
+  occupation_gte: String
+
+  # All values containing the given string.
+  occupation_contains: String
+
+  # All values not containing the given string.
+  occupation_not_contains: String
+
+  # All values starting with the given string.
+  occupation_starts_with: String
+
+  # All values not starting with the given string.
+  occupation_not_starts_with: String
+
+  # All values ending with the given string.
+  occupation_ends_with: String
+
+  # All values not ending with the given string.
+  occupation_not_ends_with: String
+  password: String
+
+  # All values that are not equal to given value.
+  password_not: String
+
+  # All values that are contained in given list.
+  password_in: [String!]
+
+  # All values that are not contained in given list.
+  password_not_in: [String!]
+
+  # All values less than the given value.
+  password_lt: String
+
+  # All values less than or equal the given value.
+  password_lte: String
+
+  # All values greater than the given value.
+  password_gt: String
+
+  # All values greater than or equal the given value.
+  password_gte: String
+
+  # All values containing the given string.
+  password_contains: String
+
+  # All values not containing the given string.
+  password_not_contains: String
+
+  # All values starting with the given string.
+  password_starts_with: String
+
+  # All values not starting with the given string.
+  password_not_starts_with: String
+
+  # All values ending with the given string.
+  password_ends_with: String
+
+  # All values not ending with the given string.
+  password_not_ends_with: String
+  updatedAt: DateTime
+
+  # All values that are not equal to given value.
+  updatedAt_not: DateTime
+
+  # All values that are contained in given list.
+  updatedAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  updatedAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  updatedAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  updatedAt_lte: DateTime
+
+  # All values greater than the given value.
+  updatedAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  updatedAt_gte: DateTime
+  username: String
+
+  # All values that are not equal to given value.
+  username_not: String
+
+  # All values that are contained in given list.
+  username_in: [String!]
+
+  # All values that are not contained in given list.
+  username_not_in: [String!]
+
+  # All values less than the given value.
+  username_lt: String
+
+  # All values less than or equal the given value.
+  username_lte: String
+
+  # All values greater than the given value.
+  username_gt: String
+
+  # All values greater than or equal the given value.
+  username_gte: String
+
+  # All values containing the given string.
+  username_contains: String
+
+  # All values not containing the given string.
+  username_not_contains: String
+
+  # All values starting with the given string.
+  username_starts_with: String
+
+  # All values not starting with the given string.
+  username_not_starts_with: String
+
+  # All values ending with the given string.
+  username_ends_with: String
+
+  # All values not ending with the given string.
+  username_not_ends_with: String
+}
+
+enum UserOrderBy {
+  age_ASC
+  age_DESC
+  createdAt_ASC
+  createdAt_DESC
+  email_ASC
+  email_DESC
+  exp_ASC
+  exp_DESC
+  firstName_ASC
+  firstName_DESC
+  id_ASC
+  id_DESC
+  lastName_ASC
+  lastName_DESC
+  location_ASC
+  location_DESC
+  occupation_ASC
+  occupation_DESC
+  password_ASC
+  password_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  username_ASC
+  username_DESC
+}
+
+type UserPreviousValues implements Node {
+  createdAt: DateTime!
+  email: String
+  firstName: String!
+  id: ID!
+  lastName: String!
+  password: String
+  updatedAt: DateTime!
+}
+
+input UserPreviousValuesFilter {
+  # Logical AND on all given filters.
+  AND: [UserPreviousValuesFilter!]
+
+  # Logical OR on all given filters.
+  OR: [UserPreviousValuesFilter!]
   createdAt: DateTime
 
   # All values that are not equal to given value.
@@ -1437,7 +3424,7 @@ input UserFilter {
   updatedAt_gte: DateTime
 }
 
-enum UserOrderBy {
+enum UserPreviousValuesOrderBy {
   createdAt_ASC
   createdAt_DESC
   email_ASC
@@ -1454,14 +3441,289 @@ enum UserOrderBy {
   updatedAt_DESC
 }
 
-type UserPreviousValues {
-  createdAt: DateTime
+type UserPreviousValuesPreviousValues {
+  createdAt: DateTime!
   email: String
   firstName: String!
   id: ID!
   lastName: String!
   password: String
+  updatedAt: DateTime!
+}
+
+input UserPreviousValuesSubscriptionFilter {
+  # Logical AND on all given filters.
+  AND: [UserPreviousValuesSubscriptionFilter!]
+
+  # Logical OR on all given filters.
+  OR: [UserPreviousValuesSubscriptionFilter!]
+
+  # The subscription event gets dispatched when it's listed in mutation_in
+  mutation_in: [_ModelMutationType!]
+
+  # The subscription event gets only dispatched when one of the updated fields names is included in this list
+  updatedFields_contains: String
+
+  # The subscription event gets only dispatched when all of the field names included in this list have been updated
+  updatedFields_contains_every: [String!]
+
+  # The subscription event gets only dispatched when some of the field names included in this list have been updated
+  updatedFields_contains_some: [String!]
+  node: UserPreviousValuesSubscriptionFilterNode
+}
+
+input UserPreviousValuesSubscriptionFilterNode {
+  createdAt: DateTime
+
+  # All values that are not equal to given value.
+  createdAt_not: DateTime
+
+  # All values that are contained in given list.
+  createdAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  createdAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  createdAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  createdAt_lte: DateTime
+
+  # All values greater than the given value.
+  createdAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  createdAt_gte: DateTime
+  email: String
+
+  # All values that are not equal to given value.
+  email_not: String
+
+  # All values that are contained in given list.
+  email_in: [String!]
+
+  # All values that are not contained in given list.
+  email_not_in: [String!]
+
+  # All values less than the given value.
+  email_lt: String
+
+  # All values less than or equal the given value.
+  email_lte: String
+
+  # All values greater than the given value.
+  email_gt: String
+
+  # All values greater than or equal the given value.
+  email_gte: String
+
+  # All values containing the given string.
+  email_contains: String
+
+  # All values not containing the given string.
+  email_not_contains: String
+
+  # All values starting with the given string.
+  email_starts_with: String
+
+  # All values not starting with the given string.
+  email_not_starts_with: String
+
+  # All values ending with the given string.
+  email_ends_with: String
+
+  # All values not ending with the given string.
+  email_not_ends_with: String
+  firstName: String
+
+  # All values that are not equal to given value.
+  firstName_not: String
+
+  # All values that are contained in given list.
+  firstName_in: [String!]
+
+  # All values that are not contained in given list.
+  firstName_not_in: [String!]
+
+  # All values less than the given value.
+  firstName_lt: String
+
+  # All values less than or equal the given value.
+  firstName_lte: String
+
+  # All values greater than the given value.
+  firstName_gt: String
+
+  # All values greater than or equal the given value.
+  firstName_gte: String
+
+  # All values containing the given string.
+  firstName_contains: String
+
+  # All values not containing the given string.
+  firstName_not_contains: String
+
+  # All values starting with the given string.
+  firstName_starts_with: String
+
+  # All values not starting with the given string.
+  firstName_not_starts_with: String
+
+  # All values ending with the given string.
+  firstName_ends_with: String
+
+  # All values not ending with the given string.
+  firstName_not_ends_with: String
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  lastName: String
+
+  # All values that are not equal to given value.
+  lastName_not: String
+
+  # All values that are contained in given list.
+  lastName_in: [String!]
+
+  # All values that are not contained in given list.
+  lastName_not_in: [String!]
+
+  # All values less than the given value.
+  lastName_lt: String
+
+  # All values less than or equal the given value.
+  lastName_lte: String
+
+  # All values greater than the given value.
+  lastName_gt: String
+
+  # All values greater than or equal the given value.
+  lastName_gte: String
+
+  # All values containing the given string.
+  lastName_contains: String
+
+  # All values not containing the given string.
+  lastName_not_contains: String
+
+  # All values starting with the given string.
+  lastName_starts_with: String
+
+  # All values not starting with the given string.
+  lastName_not_starts_with: String
+
+  # All values ending with the given string.
+  lastName_ends_with: String
+
+  # All values not ending with the given string.
+  lastName_not_ends_with: String
+  password: String
+
+  # All values that are not equal to given value.
+  password_not: String
+
+  # All values that are contained in given list.
+  password_in: [String!]
+
+  # All values that are not contained in given list.
+  password_not_in: [String!]
+
+  # All values less than the given value.
+  password_lt: String
+
+  # All values less than or equal the given value.
+  password_lte: String
+
+  # All values greater than the given value.
+  password_gt: String
+
+  # All values greater than or equal the given value.
+  password_gte: String
+
+  # All values containing the given string.
+  password_contains: String
+
+  # All values not containing the given string.
+  password_not_contains: String
+
+  # All values starting with the given string.
+  password_starts_with: String
+
+  # All values not starting with the given string.
+  password_not_starts_with: String
+
+  # All values ending with the given string.
+  password_ends_with: String
+
+  # All values not ending with the given string.
+  password_not_ends_with: String
   updatedAt: DateTime
+
+  # All values that are not equal to given value.
+  updatedAt_not: DateTime
+
+  # All values that are contained in given list.
+  updatedAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  updatedAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  updatedAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  updatedAt_lte: DateTime
+
+  # All values greater than the given value.
+  updatedAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  updatedAt_gte: DateTime
+}
+
+type UserPreviousValuesSubscriptionPayload {
+  mutation: _ModelMutationType!
+  node: UserPreviousValues
+  updatedFields: [String!]
+  previousValues: UserPreviousValuesPreviousValues
 }
 
 input UserSubscriptionFilter {
@@ -1486,6 +3748,28 @@ input UserSubscriptionFilter {
 }
 
 input UserSubscriptionFilterNode {
+  age: Int
+
+  # All values that are not equal to given value.
+  age_not: Int
+
+  # All values that are contained in given list.
+  age_in: [Int!]
+
+  # All values that are not contained in given list.
+  age_not_in: [Int!]
+
+  # All values less than the given value.
+  age_lt: Int
+
+  # All values less than or equal the given value.
+  age_lte: Int
+
+  # All values greater than the given value.
+  age_gt: Int
+
+  # All values greater than or equal the given value.
+  age_gte: Int
   createdAt: DateTime
 
   # All values that are not equal to given value.
@@ -1548,6 +3832,28 @@ input UserSubscriptionFilterNode {
 
   # All values not ending with the given string.
   email_not_ends_with: String
+  exp: Int
+
+  # All values that are not equal to given value.
+  exp_not: Int
+
+  # All values that are contained in given list.
+  exp_in: [Int!]
+
+  # All values that are not contained in given list.
+  exp_not_in: [Int!]
+
+  # All values less than the given value.
+  exp_lt: Int
+
+  # All values less than or equal the given value.
+  exp_lte: Int
+
+  # All values greater than the given value.
+  exp_gt: Int
+
+  # All values greater than or equal the given value.
+  exp_gte: Int
   firstName: String
 
   # All values that are not equal to given value.
@@ -1668,6 +3974,86 @@ input UserSubscriptionFilterNode {
 
   # All values not ending with the given string.
   lastName_not_ends_with: String
+  location: String
+
+  # All values that are not equal to given value.
+  location_not: String
+
+  # All values that are contained in given list.
+  location_in: [String!]
+
+  # All values that are not contained in given list.
+  location_not_in: [String!]
+
+  # All values less than the given value.
+  location_lt: String
+
+  # All values less than or equal the given value.
+  location_lte: String
+
+  # All values greater than the given value.
+  location_gt: String
+
+  # All values greater than or equal the given value.
+  location_gte: String
+
+  # All values containing the given string.
+  location_contains: String
+
+  # All values not containing the given string.
+  location_not_contains: String
+
+  # All values starting with the given string.
+  location_starts_with: String
+
+  # All values not starting with the given string.
+  location_not_starts_with: String
+
+  # All values ending with the given string.
+  location_ends_with: String
+
+  # All values not ending with the given string.
+  location_not_ends_with: String
+  occupation: String
+
+  # All values that are not equal to given value.
+  occupation_not: String
+
+  # All values that are contained in given list.
+  occupation_in: [String!]
+
+  # All values that are not contained in given list.
+  occupation_not_in: [String!]
+
+  # All values less than the given value.
+  occupation_lt: String
+
+  # All values less than or equal the given value.
+  occupation_lte: String
+
+  # All values greater than the given value.
+  occupation_gt: String
+
+  # All values greater than or equal the given value.
+  occupation_gte: String
+
+  # All values containing the given string.
+  occupation_contains: String
+
+  # All values not containing the given string.
+  occupation_not_contains: String
+
+  # All values starting with the given string.
+  occupation_starts_with: String
+
+  # All values not starting with the given string.
+  occupation_not_starts_with: String
+
+  # All values ending with the given string.
+  occupation_ends_with: String
+
+  # All values not ending with the given string.
+  occupation_not_ends_with: String
   password: String
 
   # All values that are not equal to given value.
@@ -1730,6 +4116,46 @@ input UserSubscriptionFilterNode {
 
   # All values greater than or equal the given value.
   updatedAt_gte: DateTime
+  username: String
+
+  # All values that are not equal to given value.
+  username_not: String
+
+  # All values that are contained in given list.
+  username_in: [String!]
+
+  # All values that are not contained in given list.
+  username_not_in: [String!]
+
+  # All values less than the given value.
+  username_lt: String
+
+  # All values less than or equal the given value.
+  username_lte: String
+
+  # All values greater than the given value.
+  username_gt: String
+
+  # All values greater than or equal the given value.
+  username_gte: String
+
+  # All values containing the given string.
+  username_contains: String
+
+  # All values not containing the given string.
+  username_not_contains: String
+
+  # All values starting with the given string.
+  username_starts_with: String
+
+  # All values not starting with the given string.
+  username_not_starts_with: String
+
+  # All values ending with the given string.
+  username_ends_with: String
+
+  # All values not ending with the given string.
+  username_not_ends_with: String
 }
 
 type UserSubscriptionPayload {
