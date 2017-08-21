@@ -7,20 +7,20 @@ const getUserGql = gql`
       firstName
       lastName
       email
-	  occupation
-	  exp
-	  location
-	  age
+      occupation
+      exp
+      location
+      age
     }
   }
 `;
 
 const withData = graphql(getUserGql, {
-	options: ({ userid }) => ({
-		variables: {
-			userid
-		}
-	})
+  options: ({ userid }) => ({
+    variables: {
+      userid
+    }
+  })
 });
 
 export default comp => withData(comp);

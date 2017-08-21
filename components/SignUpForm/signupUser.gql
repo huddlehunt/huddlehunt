@@ -3,10 +3,18 @@ mutation signupUser(
   $lastName: String!
   $email: String!
   $password: String!
+  $occupation: String!
+  $username: String!
+  $location: String!
+  $exp: Int!
 ) {
   createUser(
     firstName: $firstName
     lastName: $lastName
+	occupation: $occupation
+	username: $username
+	location: $location
+	exp: $exp
     authProvider: { email: { email: $email, password: $password } }
   ) {
     id
