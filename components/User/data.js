@@ -7,7 +7,7 @@ const getUserGql = gql`
       firstName
       lastName
       email
-	  username
+      username
       occupation
       exp
       location

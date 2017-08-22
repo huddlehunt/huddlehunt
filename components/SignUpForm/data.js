@@ -1,33 +1,35 @@
 import { graphql, gql } from 'react-apollo';
 import { connect } from 'react-redux';
 import { dispatchers } from '../AuthFields/store';
-//import createUserGql from './signupUser.gql';
+// import createUserGql from './signupUser.gql';
 
-const createUserGql = gql`mutation signupUser(
-  $firstName: String!
-  $lastName: String!
-  $email: String!
-  $password: String!
-  $occupation: String!
-  $username: String!
-  $location: String!
-  $exp: Int
-) {
-  createUser(
-    firstName: $firstName
-    lastName: $lastName
-	occupation: $occupation
-	username: $username
-	location: $location
-	exp: $exp
-    authProvider: { email: { email: $email, password: $password } }
+const createUserGql = gql`
+  mutation signupUser(
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $password: String!
+    $occupation: String!
+    $username: String!
+    $location: String!
+    $exp: Int
   ) {
-    id
+    createUser(
+      firstName: $firstName
+      lastName: $lastName
+      occupation: $occupation
+      username: $username
+      location: $location
+      exp: $exp
+      authProvider: { email: { email: $email, password: $password } }
+    ) {
+      id
+    }
+    signinUser(email: { email: $email, password: $password }) {
+      token
+    }
   }
-  signinUser(email: { email: $email, password: $password }) {
-    token
-  }
-}`
+`;
 
 const withMutation = graphql(createUserGql, {
   props: ({ mutate }) => ({
