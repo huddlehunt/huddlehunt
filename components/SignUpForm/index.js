@@ -35,10 +35,9 @@ class SignUpForm extends React.Component {
     { key: 2, attr: { name: 'lastName', type: 'text', label: 'Last Name' } },
     { key: 3, attr: { name: 'email', type: 'email', label: 'Email' } },
     { key: 4, attr: { name: 'password', type: 'password', label: 'Password' } },
-	{ key: 5, attr: { name: 'occupation', type: 'text', label: 'Occupation' } },
-	{ key: 6, attr: { name: 'username', type: 'text', label: 'Username' } },
-	{ key: 7, attr: { name: 'location', type: 'text', label: 'Location' } },
-	{ key: 8, attr: { name: 'exp', type: 'number', label: 'Experience' } }	
+    { key: 5, attr: { name: 'occupation', type: 'text', label: 'Occupation' } },
+    { key: 6, attr: { name: 'username', type: 'text', label: 'Username' } },
+    { key: 7, attr: { name: 'location', type: 'text', label: 'Location' } }
   ];
 
   handleTouch = () => {
@@ -46,8 +45,7 @@ class SignUpForm extends React.Component {
   };
 
   handleChange = e => {
-	(e.target.type === 'number') ? console.log('found number input') : console.log('NaN input');
-    const fieldValue = (e.target.type === 'number') ? parseInt(e.target.value) : e.target.value;
+    const fieldValue = e.target.value;
     const fieldName = e.target.name;
     const obj = {};
     obj[fieldName] = fieldValue;

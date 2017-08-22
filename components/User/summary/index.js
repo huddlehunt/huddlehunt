@@ -4,7 +4,10 @@ import { Link } from '../../../routes';
 const UserSummary = props =>
   <div>
     <b>Name: </b>
-    <Link as={`/user/${props.user.firstName}-${props.user.lastName}`} href={`/user?id=${props.user.id}`}>
+    <Link
+      as={`/user/${props.user.username}`}
+      href={`/user?id=${props.user.id}`}
+    >
       <a>
         {props.user.firstName} {props.user.lastName}
       </a>

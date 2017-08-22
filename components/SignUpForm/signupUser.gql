@@ -6,7 +6,7 @@ mutation signupUser(
   $occupation: String!
   $username: String!
   $location: String!
-  $exp: Int!
+  $exp: Int
 ) {
   createUser(
     firstName: $firstName
