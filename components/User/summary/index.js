@@ -5,8 +5,11 @@ const UserSummary = props =>
   <div>
     <b>Name: </b>
     <Link
-      as={`/user/${props.user.username}`}
-      href={`/user?id=${props.user.id}`}
+      route="user"
+      params={{
+        username: props.user.username
+      }}
+      passHref
     >
       <a>
         {props.user.firstName} {props.user.lastName}

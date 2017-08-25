@@ -28,7 +28,12 @@ const LinkList = ({ pathname, authenticated, logout }) =>
         LogOut
       </S.LogOutButton>}
     {authenticated &&
-      <Link prefetch route="user" passHref>
+      <Link
+        prefetch
+        route="user"
+        params={{ username: 'newfieldsusername' }}
+        passHref
+      >
         <S.A active={pathname === '/user'}>User Profile</S.A>
       </Link>}
     <S.A

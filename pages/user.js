@@ -18,6 +18,6 @@ export default withData(props =>
         idfromurl {props.url.query.id}
       </pre>
     </div>
-    <UserProfile userid={props.url.query.id} />
+    <UserProfile username={props.url.query.username} />
   </App>
 );

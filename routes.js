@@ -17,6 +17,7 @@ routes.add('details', '/details/:postId/:postTitle');
 routes.add('create', '/create_post');
 routes.add('signin', '/sign_in');
 routes.add('signup', '/sign_up');
+routes.add('user', '/user/:username');
 
 // ------------ ROUTES ---------------
 //
