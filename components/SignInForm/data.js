@@ -1,7 +1,18 @@
 import { connect } from 'react-redux';
-import { graphql } from 'react-apollo';
+import { graphql, gql } from 'react-apollo';
 import { dispatchers } from '../AuthFields/store';
-import signInGql from './signinUser.gql';
+// import signInGql from './signinUser.gql';
+
+const signInGql = gql`
+  mutation signinUser($email: String!, $password: String!) {
+    signinUser(email: { email: $email, password: $password }) {
+      token
+      user {
+        username
+      }
+    }
+  }
+`;
 
 const withMutation = graphql(signInGql, {
   props: ({ mutate }) => ({
@@ -16,8 +27,8 @@ const withMutation = graphql(signInGql, {
 
 const mapDispatchToProps = dispatch => ({
   actions: {
-    signIn(token) {
-      dispatch(dispatchers.signIn(token));
+    signIn(token, user) {
+      dispatch(dispatchers.signIn(token, user));
     }
   }
 });

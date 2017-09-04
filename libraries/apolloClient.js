@@ -35,7 +35,12 @@ const createClient = (headers, token) =>
     ssrMode: !process.browser,
     ssrForceFetchDelay: 100,
     headers,
-    networkInterface: initNetworkInterface(token)
+    networkInterface: initNetworkInterface(token),
+    initialState: {
+      auth: {
+        username: null
+      }
+    }
   });
 
 export default (headers, token) => {

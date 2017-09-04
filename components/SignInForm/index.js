@@ -49,7 +49,6 @@ class SignInForm extends React.Component {
 
   handleSubmit(e, valuesPack) {
     e.preventDefault();
-
     // reset state
     this.setState({
       errors: {},
@@ -69,7 +68,10 @@ class SignInForm extends React.Component {
       .signIn(valuesPack)
       .then(response => {
         if (response.data) {
-          this.props.actions.signIn(response.data.signinUser.token);
+          this.props.actions.signIn(
+            response.data.signinUser.token,
+            response.data.signinUser.user
+          );
         }
       })
       .catch(err => {

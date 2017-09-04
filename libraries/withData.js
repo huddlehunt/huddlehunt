@@ -52,7 +52,6 @@ export default Component =>
 
     constructor(props) {
       super(props);
-
       this.apolloClient = apolloClient(this.props.headers);
       this.reduxStore = reduxStore(this.apolloClient, this.props.initialState);
     }

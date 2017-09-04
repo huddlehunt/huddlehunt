@@ -9,6 +9,7 @@ export const AUTH_SERVERERROR = 'AUTH/SERVERERROR';
 const initialState = {
   authenticated: false,
   token: null,
+  username: null,
   error: null
 };
 
@@ -20,10 +21,17 @@ const reducer = (state = initialState, action) => {
         ...state,
         authenticated: true,
         token: action.token,
+        username: action.user.username,
         error: null
       };
     case AUTH_SIGNOUT:
-      return { ...state, authenticated: false, token: null, error: null };
+      return {
+        ...state,
+        authenticated: false,
+        token: null,
+        username: null,
+        error: null
+      };
     case AUTH_SERVERERROR:
       return { ...state, authenticated: false, error: action.error };
     default:
@@ -34,15 +42,17 @@ const reducer = (state = initialState, action) => {
 // Action creators
 const actionCreators = {};
 
-actionCreators.signIn = token => ({ type: AUTH_SIGNIN, token });
+actionCreators.signIn = (token, user) => {
+  return { type: AUTH_SIGNIN, token, user };
+};
 actionCreators.signOut = () => ({ type: AUTH_SIGNOUT });
 
 // Discpatchers
 const dispatchers = {};
 
-dispatchers.signIn = token => {
+dispatchers.signIn = (token, user) => {
   persist.willSetAccessToken(token);
-  return actionCreators.signIn(token);
+  return actionCreators.signIn(token, user);
 };
 
 dispatchers.signOut = () => {

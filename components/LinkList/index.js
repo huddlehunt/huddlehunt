@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Link } from '../../routes';
 import * as S from './styles';
 
-const LinkList = ({ pathname, authenticated, logout }) =>
+const LinkList = ({ pathname, authenticated, username, logout }) =>
   <nav>
     <Link prefetch href="/" passHref>
       <S.A active={pathname === '/'}>Main Page</S.A>
@@ -31,7 +31,7 @@ const LinkList = ({ pathname, authenticated, logout }) =>
       <Link
         prefetch
         route="user"
-        params={{ username: 'newfieldsusername' }}
+        params={{ username: `${username}` }}
         passHref
       >
         <S.A active={pathname === '/user'}>User Profile</S.A>

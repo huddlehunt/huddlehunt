@@ -11,7 +11,6 @@ export default (apolloClient, initialState, token) => {
   if (!process.browser || !reduxStore) {
     const middleware = createMiddleware(apolloClient.middleware());
     store = createStore(getReducer(apolloClient), initialState, middleware);
-
     let tokenInStore = store.getState().auth.token;
 
     if (!tokenInStore) {

@@ -3,11 +3,12 @@ import LinkList from '../../components/LinkList';
 import * as S from './styles';
 import connect from './data';
 
-const Header = ({ pathname, authenticated, actions: { logout } }) =>
+const Header = ({ pathname, authenticated, username, actions: { logout } }) =>
   <S.Header>
     <LinkList
       pathname={pathname}
       authenticated={authenticated}
+	  username={username}
       logout={logout}
     />
   </S.Header>;
