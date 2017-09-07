@@ -8,7 +8,7 @@ const Header = ({ pathname, authenticated, username, actions: { logout } }) =>
     <LinkList
       pathname={pathname}
       authenticated={authenticated}
-	  username={username}
+      username={username}
       logout={logout}
     />
   </S.Header>;
@@ -20,6 +20,7 @@ Header.defaultProps = {
 Header.propTypes = {
   pathname: PropTypes.string.isRequired,
   authenticated: PropTypes.bool,
+  username: PropTypes.string.isRequired,
   actions: PropTypes.shape({
     logout: PropTypes.func.isRequired
   }).isRequired

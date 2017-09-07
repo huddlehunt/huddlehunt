@@ -28,12 +28,7 @@ const LinkList = ({ pathname, authenticated, username, logout }) =>
         LogOut
       </S.LogOutButton>}
     {authenticated &&
-      <Link
-        prefetch
-        route="user"
-        params={{ username: `${username}` }}
-        passHref
-      >
+      <Link prefetch route="user" params={{ username: `${username}` }} passHref>
         <S.A active={pathname === '/user'}>User Profile</S.A>
       </Link>}
     <S.A
@@ -48,6 +43,7 @@ const LinkList = ({ pathname, authenticated, username, logout }) =>
 LinkList.propTypes = {
   pathname: PropTypes.string.isRequired,
   authenticated: PropTypes.bool.isRequired,
+  username: PropTypes.string.isRequired,
   logout: PropTypes.func.isRequired
 };
 
