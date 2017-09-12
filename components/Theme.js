@@ -10,6 +10,8 @@ export const A = styled.a`color: ${props => props.theme.colors.main};`;
 export const P = styled.p`
   font-size: ${props => props.theme.font.sizes.normal};
   line-height: ${props => props.theme.font.sizes.bigger};
+  margin-top: ${props => props.theme.paragraphs.noMargin};
+  margin-bottom: ${props => props.theme.paragraphs.noMargin};
 `;
 
 export const Article = styled.article`

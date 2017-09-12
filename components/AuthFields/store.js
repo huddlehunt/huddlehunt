@@ -35,6 +35,7 @@ const reducer = (state = initialState, action) => {
     case AUTH_SERVERERROR:
       return { ...state, authenticated: false, error: action.error };
     default:
+      console.log('default action in the authFiels store reducer is called');
       return state;
   }
 };
@@ -42,9 +43,7 @@ const reducer = (state = initialState, action) => {
 // Action creators
 const actionCreators = {};
 
-actionCreators.signIn = (token, user) => {
-  return { type: AUTH_SIGNIN, token, user };
-};
+actionCreators.signIn = (token, user) => ({ type: AUTH_SIGNIN, token, user });
 actionCreators.signOut = () => ({ type: AUTH_SIGNOUT });
 
 // Discpatchers
@@ -52,11 +51,17 @@ const dispatchers = {};
 
 dispatchers.signIn = (token, user) => {
   persist.willSetAccessToken(token);
+  if (typeof user === 'string') {
+    persist.willSetUsername(user);
+  } else {
+    persist.willSetUsername(user.username);
+  }
   return actionCreators.signIn(token, user);
 };
 
 dispatchers.signOut = () => {
   persist.willRemoveAccessToken();
+  persist.willRemoveUsername();
   return actionCreators.signOut();
 };
 

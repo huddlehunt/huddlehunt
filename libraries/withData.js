@@ -18,9 +18,18 @@ export default Component =>
     static async getInitialProps(ctx) {
       const headers = ctx.req ? ctx.req.headers : {};
       const token = cookies(ctx)[persist.ACCESS_TOKEN_KEY];
+      const username = cookies(ctx)[persist.USERNAME_KEY];
+      console.log('username in getInitialProps inside withData is: ');
+      console.log(username);
 
       const client = apolloClient(headers, token);
-      const store = reduxStore(client, client.initialState, token);
+      console.log(
+        'client.initialState from getInitialProps inside withData is: '
+      );
+      console.log(client.initialState);
+      const store = reduxStore(client, client.initialState, token, username);
+      console.log('store from getInitialProps inside withData is: ');
+      console.log(store);
       const props = {
         url: { query: ctx.query, pathname: ctx.pathname },
         ...(await (Component.getInitialProps
@@ -38,6 +47,8 @@ export default Component =>
       }
 
       const state = store.getState();
+      console.log('state from getInitialProps inside withData is: ');
+      console.log(state);
       return {
         initialState: {
           ...state,
@@ -52,6 +63,8 @@ export default Component =>
 
     constructor(props) {
       super(props);
+      console.log('this.props.initialState inside the withData constructor is');
+      console.log(this.props.initialState);
       this.apolloClient = apolloClient(this.props.headers);
       this.reduxStore = reduxStore(this.apolloClient, this.props.initialState);
     }

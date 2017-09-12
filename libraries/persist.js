@@ -16,6 +16,24 @@ class persist {
   static async willRemoveAccessToken() {
     return cookies.remove(persist.ACCESS_TOKEN_KEY);
   }
+
+  // username cookie
+  static get USERNAME_KEY() {
+    return 'username';
+  }
+
+  static async willGetUsername() {
+    return cookies.get(persist.USERNAME_KEY);
+  }
+
+  static async willSetUsername(value) {
+    console.log('willSetUsername was called');
+    return cookies.set(persist.USERNAME_KEY, value);
+  }
+
+  static async willRemoveUsername() {
+    return cookies.remove(persist.USERNAME_KEY);
+  }
 }
 
 module.exports = persist;
