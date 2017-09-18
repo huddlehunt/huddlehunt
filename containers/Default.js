@@ -3,16 +3,23 @@ import PropTypes from 'prop-types';
 import App from '../components/App';
 import Header from '../components/Header';
 
-const Default = props =>
-  <App>
-    <Helmet>
-      <title>
-        {props.title !== '' ? `${props.title} :: RAN! Example` : 'RAN! Example'}
-      </title>
-    </Helmet>
-    <Header pathname={props.url.pathname} />
-    {props.children}
-  </App>;
+const Default = props => {
+  console.log('props in default container is: ');
+  console.log(props);
+  return (
+    <App>
+      <Helmet>
+        <title>
+          {props.title !== ''
+            ? `${props.title} :: RAN! Example`
+            : 'RAN! Example'}
+        </title>
+      </Helmet>
+      <Header pathname={props.url.pathname} />
+      {props.children}
+    </App>
+  );
+};
 
 Default.propTypes = {
   title: PropTypes.string,

@@ -40,10 +40,14 @@ const LinkList = ({ pathname, authenticated, username, logout }) =>
     </S.A>
   </nav>;
 
+LinkList.defaultProps = {
+  username: ''
+};
+
 LinkList.propTypes = {
   pathname: PropTypes.string.isRequired,
   authenticated: PropTypes.bool.isRequired,
-  username: PropTypes.string.isRequired,
+  username: PropTypes.string,
   logout: PropTypes.func.isRequired
 };
 

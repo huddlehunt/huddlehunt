@@ -21,7 +21,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         authenticated: true,
         token: action.token,
-        username: action.user.username,
+        username: action.user,
         error: null
       };
     case AUTH_SIGNOUT:
@@ -56,7 +56,11 @@ dispatchers.signIn = (token, user) => {
   } else {
     persist.willSetUsername(user.username);
   }
-  return actionCreators.signIn(token, user);
+
+  if (typeof user === 'string') {
+    return actionCreators.signIn(token, user);
+  }
+  return actionCreators.signIn(token, user.username);
 };
 
 dispatchers.signOut = () => {

@@ -14,7 +14,8 @@ export default (apolloClient, initialState, token, username) => {
     console.log(initialState);
     store = createStore(getReducer(apolloClient), initialState, middleware);
     let tokenInStore = store.getState().auth.token;
-
+    console.log('store.getState().auth.username is: ');
+    console.log(store.getState().auth.username);
     if (!tokenInStore) {
       (async () => {
         tokenInStore =

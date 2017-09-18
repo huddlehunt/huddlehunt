@@ -19,6 +19,8 @@ export default Component =>
       const headers = ctx.req ? ctx.req.headers : {};
       const token = cookies(ctx)[persist.ACCESS_TOKEN_KEY];
       const username = cookies(ctx)[persist.USERNAME_KEY];
+      console.log('ctx in getInitialProps is: ');
+      console.log(ctx);
       console.log('username in getInitialProps inside withData is: ');
       console.log(username);
 
@@ -27,6 +29,7 @@ export default Component =>
         'client.initialState from getInitialProps inside withData is: '
       );
       console.log(client.initialState);
+      // THINK THE ISSUE IS GETTING THE USERNAME INTO STORE PROPERLY
       const store = reduxStore(client, client.initialState, token, username);
       console.log('store from getInitialProps inside withData is: ');
       console.log(store);
