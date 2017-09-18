@@ -21,7 +21,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         authenticated: true,
         token: action.token,
-        username: action.user,
+        username: action.username,
         error: null
       };
     case AUTH_SIGNOUT:
@@ -35,7 +35,6 @@ const reducer = (state = initialState, action) => {
     case AUTH_SERVERERROR:
       return { ...state, authenticated: false, error: action.error };
     default:
-      console.log('default action in the authFiels store reducer is called');
       return state;
   }
 };
@@ -43,24 +42,20 @@ const reducer = (state = initialState, action) => {
 // Action creators
 const actionCreators = {};
 
-actionCreators.signIn = (token, user) => ({ type: AUTH_SIGNIN, token, user });
+actionCreators.signIn = (token, username) => ({
+  type: AUTH_SIGNIN,
+  token,
+  username
+});
 actionCreators.signOut = () => ({ type: AUTH_SIGNOUT });
 
 // Discpatchers
 const dispatchers = {};
 
-dispatchers.signIn = (token, user) => {
+dispatchers.signIn = (token, username) => {
   persist.willSetAccessToken(token);
-  if (typeof user === 'string') {
-    persist.willSetUsername(user);
-  } else {
-    persist.willSetUsername(user.username);
-  }
-
-  if (typeof user === 'string') {
-    return actionCreators.signIn(token, user);
-  }
-  return actionCreators.signIn(token, user.username);
+  persist.willSetUsername(username);
+  return actionCreators.signIn(token, username);
 };
 
 dispatchers.signOut = () => {

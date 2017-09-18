@@ -10,12 +10,8 @@ export default (apolloClient, initialState, token, username) => {
   let store;
   if (!process.browser || !reduxStore) {
     const middleware = createMiddleware(apolloClient.middleware());
-    console.log('initialState in reduxStore is: ');
-    console.log(initialState);
     store = createStore(getReducer(apolloClient), initialState, middleware);
     let tokenInStore = store.getState().auth.token;
-    console.log('store.getState().auth.username is: ');
-    console.log(store.getState().auth.username);
     if (!tokenInStore) {
       (async () => {
         tokenInStore =

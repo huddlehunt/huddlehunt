@@ -27,7 +27,6 @@ class persist {
   }
 
   static async willSetUsername(value) {
-    console.log('willSetUsername was called');
     return cookies.set(persist.USERNAME_KEY, value);
   }
 
