@@ -41,6 +41,9 @@ themeList.main = {
     background: '#ffffff',
     text: '#000000',
     textAlt: '#ffffff'
+  },
+  paragraphs: {
+    noMargin: '0px'
   }
 };
 

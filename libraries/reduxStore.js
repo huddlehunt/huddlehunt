@@ -6,13 +6,12 @@ import persist from './persist';
 
 let reduxStore = null;
 
-export default (apolloClient, initialState, token) => {
+export default (apolloClient, initialState, token, username) => {
   let store;
   if (!process.browser || !reduxStore) {
     const middleware = createMiddleware(apolloClient.middleware());
     store = createStore(getReducer(apolloClient), initialState, middleware);
     let tokenInStore = store.getState().auth.token;
-
     if (!tokenInStore) {
       (async () => {
         tokenInStore =
@@ -20,7 +19,7 @@ export default (apolloClient, initialState, token) => {
 
         if (typeof token === 'string' && !token.includes('Error')) {
           if (token.length) {
-            store.dispatch(dispatchers.signIn(token));
+            store.dispatch(dispatchers.signIn(token, username));
           } else {
             store.dispatch(dispatchers.signOut());
           }

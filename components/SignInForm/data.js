@@ -27,8 +27,8 @@ const withMutation = graphql(signInGql, {
 
 const mapDispatchToProps = dispatch => ({
   actions: {
-    signIn(token, user) {
-      dispatch(dispatchers.signIn(token, user));
+    signIn(token, username) {
+      dispatch(dispatchers.signIn(token, username));
     }
   }
 });

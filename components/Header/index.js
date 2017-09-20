@@ -14,13 +14,14 @@ const Header = ({ pathname, authenticated, username, actions: { logout } }) =>
   </S.Header>;
 
 Header.defaultProps = {
-  authenticated: false
+  authenticated: false,
+  username: ''
 };
 
 Header.propTypes = {
   pathname: PropTypes.string.isRequired,
   authenticated: PropTypes.bool,
-  username: PropTypes.string.isRequired,
+  username: PropTypes.string,
   actions: PropTypes.shape({
     logout: PropTypes.func.isRequired
   }).isRequired

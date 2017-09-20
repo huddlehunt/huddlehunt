@@ -80,7 +80,8 @@
     "react-helmet": "5.1.3",
     "react-redux": "5.0.6",
     "redux": "3.7.2",
-    "styled-components": "2.1.2"
+    "styled-components": "2.1.2",
+	"react-dropzone": "0.0.0-development"
   },
   "devDependencies": {
     "babel-eslint": "7.2.3",

@@ -18,9 +18,11 @@ export default Component =>
     static async getInitialProps(ctx) {
       const headers = ctx.req ? ctx.req.headers : {};
       const token = cookies(ctx)[persist.ACCESS_TOKEN_KEY];
+      const username = cookies(ctx)[persist.USERNAME_KEY];
 
       const client = apolloClient(headers, token);
-      const store = reduxStore(client, client.initialState, token);
+
+      const store = reduxStore(client, client.initialState, token, username);
       const props = {
         url: { query: ctx.query, pathname: ctx.pathname },
         ...(await (Component.getInitialProps

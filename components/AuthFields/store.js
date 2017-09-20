@@ -21,7 +21,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         authenticated: true,
         token: action.token,
-        username: action.user.username,
+        username: action.username,
         error: null
       };
     case AUTH_SIGNOUT:
@@ -42,19 +42,29 @@ const reducer = (state = initialState, action) => {
 // Action creators
 const actionCreators = {};
 
+<<<<<<< HEAD
 actionCreators.signIn = (token, user) => ({ type: AUTH_SIGNIN, token, user });
+=======
+actionCreators.signIn = (token, username) => ({
+  type: AUTH_SIGNIN,
+  token,
+  username
+});
+>>>>>>> e8cf1910f2e23f8f1245a26bb3d275ec76771b65
 actionCreators.signOut = () => ({ type: AUTH_SIGNOUT });
 
 // Discpatchers
 const dispatchers = {};
 
-dispatchers.signIn = (token, user) => {
+dispatchers.signIn = (token, username) => {
   persist.willSetAccessToken(token);
-  return actionCreators.signIn(token, user);
+  persist.willSetUsername(username);
+  return actionCreators.signIn(token, username);
 };
 
 dispatchers.signOut = () => {
   persist.willRemoveAccessToken();
+  persist.willRemoveUsername();
   return actionCreators.signOut();
 };
 

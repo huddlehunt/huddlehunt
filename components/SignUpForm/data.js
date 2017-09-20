@@ -13,6 +13,7 @@ const createUserGql = gql`
     $username: String!
     $location: String!
     $exp: Int
+    $profilePic: String
   ) {
     createUser(
       firstName: $firstName
@@ -21,12 +22,16 @@ const createUserGql = gql`
       username: $username
       location: $location
       exp: $exp
+      profilePic: $profilePic
       authProvider: { email: { email: $email, password: $password } }
     ) {
       id
     }
     signinUser(email: { email: $email, password: $password }) {
       token
+      user {
+        username
+      }
     }
   }
 `;
@@ -42,7 +47,8 @@ const withMutation = graphql(createUserGql, {
         occupation,
         username,
         location,
-        exp
+        exp,
+        profilePic
       }) =>
         mutate({
           variables: {
@@ -53,7 +59,8 @@ const withMutation = graphql(createUserGql, {
             occupation,
             username,
             location,
-            exp
+            exp,
+            profilePic
           }
         })
     }
@@ -62,8 +69,8 @@ const withMutation = graphql(createUserGql, {
 
 const mapDispatchToProps = dispatch => ({
   actions: {
-    signIn(token) {
-      dispatch(dispatchers.signIn(token));
+    signIn(token, username) {
+      dispatch(dispatchers.signIn(token, username));
     }
   }
 });

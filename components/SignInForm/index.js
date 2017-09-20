@@ -70,7 +70,7 @@ class SignInForm extends React.Component {
         if (response.data) {
           this.props.actions.signIn(
             response.data.signinUser.token,
-            response.data.signinUser.user
+            response.data.signinUser.user.username
           );
         }
       })
