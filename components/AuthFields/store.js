@@ -42,9 +42,7 @@ const reducer = (state = initialState, action) => {
 // Action creators
 const actionCreators = {};
 
-actionCreators.signIn = (token, user) => {
-  return { type: AUTH_SIGNIN, token, user };
-};
+actionCreators.signIn = (token, user) => ({ type: AUTH_SIGNIN, token, user });
 actionCreators.signOut = () => ({ type: AUTH_SIGNOUT });
 
 // Discpatchers
