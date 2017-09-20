@@ -1,0 +1,8 @@
+{
+  allHuddles {
+    id
+    huddleExpiryDate
+    huddleType
+    updatedAt
+  }
+}
