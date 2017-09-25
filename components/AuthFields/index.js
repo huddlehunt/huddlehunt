@@ -14,19 +14,6 @@ const AuthFields = props => {
     touched,
     errors
   } = props;
-  const onDrop = files => {
-    const data = new FormData();
-    data.append('data', files[0]);
-
-    fetch('https://api.graph.cool/file/v1/cj5o4cp4iwr8d0160vkfr1dk6', {
-      method: 'POST',
-      body: data
-    })
-      .then(response => response.json())
-      .then(file => {
-        handleFileDrop(file.url);
-      });
-  };
   const mapFields = fields.map(field =>
     <div key={field.key}>
       {field.attr.type !== 'file' &&
@@ -40,7 +27,8 @@ const AuthFields = props => {
       {field.attr.type === 'file' &&
         <Dropzone
           inputProps={field.attr}
-          onDrop={onDrop}
+          onDrop={handleFileDrop}
+          name={field.attr.name}
           accept="image/*"
           multiple={false}
         >

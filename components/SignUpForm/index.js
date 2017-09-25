@@ -48,12 +48,22 @@ class SignUpForm extends React.Component {
     this.setState({ touched: true });
   };
 
-  handleFileDrop = fileUrl => {
-    const obj = {};
-    // the key for this object shouldn't be hard-coded,
-    // should be passed to this function but need to figure out where/how to do this properly
-    obj.profilePic = fileUrl;
-    this.setState(obj);
+  handleFileDrop = files => {
+    const data = new FormData();
+    data.append('data', files[0]);
+
+    fetch('https://api.graph.cool/file/v1/cj5o4cp4iwr8d0160vkfr1dk6', {
+      method: 'POST',
+      body: data
+    })
+      .then(response => response.json())
+      .then(file => {
+        const obj = {};
+        // the key for this object shouldn't be hard-coded,
+        // should be passed to this function but need to figure out where/how to do this properly
+        obj.profilePic = file.url;
+        this.setState(obj);
+      });
   };
 
   handleChange = e => {
