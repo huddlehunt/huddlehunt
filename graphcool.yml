@@ -1,0 +1,32 @@
+types: ./types.graphql
+functions: {}
+permissions:
+- operation: Facility.read
+- operation: Facility.create
+- operation: Facility.update
+- operation: Facility.delete
+- operation: File.read
+- operation: File.create
+- operation: File.update
+- operation: File.delete
+- operation: FilePreviousValues.read
+- operation: FilePreviousValues.create
+- operation: FilePreviousValues.update
+- operation: FilePreviousValues.delete
+- operation: Huddle.read
+- operation: Huddle.create
+- operation: Huddle.update
+- operation: Huddle.delete
+- operation: Post.read
+- operation: Post.create
+- operation: Post.update
+- operation: Post.delete
+- operation: User.read
+- operation: User.create
+- operation: User.update
+- operation: User.delete
+- operation: UserPreviousValues.read
+- operation: UserPreviousValues.create
+- operation: UserPreviousValues.update
+- operation: UserPreviousValues.delete
+rootTokens: []

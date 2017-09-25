@@ -42,11 +42,15 @@ const reducer = (state = initialState, action) => {
 // Action creators
 const actionCreators = {};
 
+<<<<<<< HEAD
+actionCreators.signIn = (token, user) => ({ type: AUTH_SIGNIN, token, user });
+=======
 actionCreators.signIn = (token, username) => ({
   type: AUTH_SIGNIN,
   token,
   username
 });
+>>>>>>> e8cf1910f2e23f8f1245a26bb3d275ec76771b65
 actionCreators.signOut = () => ({ type: AUTH_SIGNOUT });
 
 // Discpatchers

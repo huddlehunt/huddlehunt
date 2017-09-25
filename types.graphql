@@ -1,0 +1,72 @@
+type File implements Node {
+  contentType: String!
+  createdAt: DateTime!
+  id: ID! @isUnique
+  name: String!
+  secret: String! @isUnique
+  size: Int!
+  updatedAt: DateTime!
+  url: String! @isUnique
+}
+
+type UserPreviousValues implements Node {
+  createdAt: DateTime!
+  email: String
+  firstName: String!
+  id: ID! @isUnique
+  lastName: String!
+  password: String
+  updatedAt: DateTime!
+}
+
+type User implements Node {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  updatedAt: DateTime!
+  email: String @isUnique
+  password: String
+  firstName: String!
+  lastName: String!
+  occupation: String!
+  username: String! @isUnique
+  exp: Int
+  location: String!
+  age: Int
+}
+
+type Facility implements Node {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  updatedAt: DateTime!
+  facilityType: String!
+  amenities: String!
+  location: String!
+}
+
+type Post implements Node {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  title: String!
+  updatedAt: DateTime!
+  url: String!
+  votes: Int
+}
+
+type Huddle implements Node {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  updatedAt: DateTime!
+  huddleType: String!
+  huddleExpiryDate: DateTime!
+}
+
+type FilePreviousValues implements Node {
+  contentType: String!
+  createdAt: DateTime!
+  id: ID! @isUnique
+  name: String!
+  secret: String!
+  size: Int!
+  updatedAt: DateTime!
+  url: String!
+}
